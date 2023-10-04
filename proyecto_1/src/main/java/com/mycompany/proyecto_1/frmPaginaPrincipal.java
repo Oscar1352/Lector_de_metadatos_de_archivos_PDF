@@ -4,6 +4,10 @@
  */
 package com.mycompany.proyecto_1;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author urbin
@@ -38,6 +42,11 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Presione el siguiente boton para seleccionar una carpeta");
 
         jButton1.setText("Seleccionar carpeta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,6 +77,43 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        
+        jfc.showOpenDialog(jfc);
+        File archivoSeleccionado = jfc.getSelectedFile();
+        
+        String parent = archivoSeleccionado.getParent();
+        String nuevoParent = parent.replaceAll("\\\\", "\\\\\\\\");
+        JOptionPane.showMessageDialog(null, "Carpeta Seleccionada -> " + nuevoParent);
+        
+        CalcularTamañoArchivos(nuevoParent);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    public static void CalcularTamañoArchivos(String ruta){
+        String rutaCarpeta = ruta;
+
+        File carpeta = new File(rutaCarpeta);
+
+        if (carpeta.exists() && carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles();
+
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    if (archivo.isFile() && archivo.getName().toLowerCase().endsWith(".pdf")) {
+                        long tamanoBytes = archivo.length();
+
+                        System.out.println("Archivo: " + archivo.getName());
+                        System.out.println("Tamaño en bytes: " + tamanoBytes + " bytes");
+                        System.out.println("------------------------");
+                    }
+                }
+            }
+        } else {
+            System.err.println("La carpeta no existe o no es una carpeta válida.");
+        }
+    }
     /**
      * @param args the command line arguments
      */
