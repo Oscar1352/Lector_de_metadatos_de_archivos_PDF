@@ -75,6 +75,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -102,10 +103,10 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
             if (archivos != null) {
                 for (File archivo : archivos) {
                     if (archivo.isFile() && archivo.getName().toLowerCase().endsWith(".pdf")) {
-                        long tamanoBytes = archivo.length();
+                        long tamanoBytes = archivo.length() / 1000;
 
                         System.out.println("Archivo: " + archivo.getName());
-                        System.out.println("Tamaño en bytes: " + tamanoBytes + " bytes");
+                        System.out.println("Tamaño en bytes: " + tamanoBytes + " Kilobytes");
                         System.out.println("------------------------");
                     }
                 }
