@@ -4,6 +4,8 @@
 
 package com.mycompany.proyecto_1;
 
+import com.mycompany.proyecto_1.Interfaces.frmPaginaPrincipal;
+
 /**
  *
  * @author Oscar Luna

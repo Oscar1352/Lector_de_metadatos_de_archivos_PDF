@@ -2,11 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.proyecto_1;
+package com.mycompany.proyecto_1.Interfaces;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -47,6 +50,9 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Página principal");
+        setIconImage(getIconImage());
+        setIconImages(null);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -217,7 +223,8 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
             if (archivoSeleccionado.isFile() && archivoSeleccionado.getName().toLowerCase().endsWith(".pdf")) {
                 // Si es un archivo PDF, obtén su información
                 try {
-                    obtenerInformacionPDF(archivoSeleccionado);
+                    frmInfoArchivo a = new frmInfoArchivo(archivoSeleccionado);
+                    a.show(true);
                 } catch (IOException e) {
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error al leer el archivo PDF.");
@@ -229,44 +236,6 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se seleccionó ningún archivo.");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    public static void obtenerInformacionPDF(File archivoPDF) throws IOException {
-        // Abre el archivo PDF
-        PDDocument pdf = PDDocument.load(archivoPDF);
-
-        // Obtiene la información del documento
-        PDDocumentInformation info = pdf.getDocumentInformation();
-        String titulo = info.getTitle();
-
-        // Obtiene el número de páginas del documento
-        int numPaginas = pdf.getNumberOfPages();
-
-        // Obtiene el tamaño de las páginas
-        for (int pageNum = 0; pageNum < numPaginas; pageNum++) {
-            PDPage page = pdf.getPage(pageNum);
-            float ancho = page.getMediaBox().getWidth();
-            float alto = page.getMediaBox().getHeight();
-            System.out.println("Página " + (pageNum + 1) + ":");
-            System.out.println("Ancho: " + ancho + " puntos");
-            System.out.println("Alto: " + alto + " puntos");
-        }
-
-        // Obtiene el tamaño del archivo
-        long tamanoBytes = archivoPDF.length();
-        System.out.println("Archivo: " + archivoPDF.getName());
-        System.out.println("No De Páginas: " + numPaginas);
-        System.out.println("Tamaño en bytes: " + tamanoBytes/1000 + " Kilobytes");
-
-        // Muestra el título del PDF
-        if (titulo != null && !titulo.isEmpty()) {
-            System.out.println("Título: " + titulo);
-        } else {
-            System.out.println("El archivo PDF no tiene título.");
-        }
-
-        // Cierra el documento PDF
-        pdf.close();
-    }
 
     public static void CalcularTamañoArchivos(String ruta) {
         String rutaCarpeta = ruta;
