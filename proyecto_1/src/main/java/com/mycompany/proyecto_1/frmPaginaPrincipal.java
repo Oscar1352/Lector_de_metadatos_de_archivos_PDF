@@ -5,8 +5,12 @@
 package com.mycompany.proyecto_1;
 
 import java.io.File;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 
 /**
  *
@@ -89,6 +93,9 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Carpeta Seleccionada -> " + nuevoParent);
         
         CalcularTamañoArchivos(nuevoParent);
+        CalcularTamañoPaginas(nuevoParent);
+        CalcularNumeroPaginas(nuevoParent);
+        ObtenerTitulo(nuevoParent);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -113,6 +120,99 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
             }
         } else {
             System.err.println("La carpeta no existe o no es una carpeta válida.");
+        }
+    }
+    
+    public static void CalcularNumeroPaginas(String ruta){
+        String rutaCarpeta = ruta;
+        
+        File carpeta = new File(rutaCarpeta);
+
+        if (carpeta.exists() && carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles();
+
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    if (archivo.isFile() && archivo.getName().toLowerCase().endsWith(".pdf")) {
+                        try {
+                            PDDocument pdf = PDDocument.load(archivo);
+                            int numPaginas = pdf.getNumberOfPages();
+                            pdf.close();
+                            
+                            System.out.println("Archivo: " + archivo.getName());
+                            System.out.println("Número de páginas: " + numPaginas);
+                            System.out.println("------------------------");
+                        } catch (IOException e) {
+                            System.err.println("Error al leer el archivo PDF: " + archivo.getName());
+                        }
+                    }
+                }
+            }
+        } else {
+            System.err.println("La carpeta no existe o no es una carpeta válida.");
+        }
+    }
+    
+    public static void ObtenerTitulo(String ruta){
+        String rutaCarpeta = ruta;
+
+        File directorio = new File(rutaCarpeta);
+
+        if (directorio.isDirectory()) {
+            File[] archivosPDF = directorio.listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".pdf"));
+
+            if (archivosPDF != null) {
+                for (File archivo : archivosPDF) {
+                    try (PDDocument document = PDDocument.load(archivo)) {
+                        PDDocumentInformation info = document.getDocumentInformation();
+                        String titulo = info.getTitle();
+
+                        if (titulo != null && !titulo.isEmpty()) {
+                            System.out.println("Archivo: " + archivo.getName());
+                            System.out.println("Titulo: " + titulo);
+                            System.out.println("------------------------");
+                        } else {
+                            System.out.println("El archivo '" + archivo.getName() + "' no tiene título.");
+                            System.out.println("------------------------");
+                        }
+                    } catch (IOException e) {
+                    }
+                }
+            }
+        }
+    }
+    
+    public static void CalcularTamañoPaginas(String ruta){
+       String rutaCarpeta = ruta;
+        
+        File directorio = new File(rutaCarpeta);
+
+        if (directorio.isDirectory()) {
+            File[] archivosPDF = directorio.listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".pdf"));
+
+            if (archivosPDF != null) {
+                for (File archivo : archivosPDF) {
+                    try (PDDocument document = PDDocument.load(archivo)) {
+                        int numeroDePaginas = document.getNumberOfPages();
+
+                        System.out.println("Archivo: " + archivo.getName());
+                        
+                        for (int pageNum = 0; pageNum < numeroDePaginas; pageNum++) {
+                            PDPage page = document.getPage(pageNum);
+
+                            float ancho = page.getMediaBox().getWidth();
+                            float alto = page.getMediaBox().getHeight();
+
+                            System.out.println("Página " + (pageNum + 1) + ":");
+                            System.out.println("Ancho: " + ancho + " puntos");
+                            System.out.println("Alto: " + alto + " puntos");
+                            System.out.println();
+                        }
+                        System.out.println("------------------------");
+                    } catch (IOException e) {
+                    }
+                }
+            }
         }
     }
     /**
