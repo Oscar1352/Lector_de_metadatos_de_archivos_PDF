@@ -53,6 +53,9 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         Regresar = new java.awt.Button();
         label7 = new java.awt.Label();
         jSeparator1 = new javax.swing.JSeparator();
+        lblAplicación1 = new java.awt.Label();
+        label8 = new java.awt.Label();
+        lblVersion = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Información de PDF");
@@ -91,40 +94,47 @@ public class frmInfoArchivo extends javax.swing.JFrame {
 
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        label8.setText("Version de PDF: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86))))
+                .addGap(23, 198, Short.MAX_VALUE)
+                .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(lblAplicación1, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblVersion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNoDePáginas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTítulo, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(lblAsunto, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(lblPalabrasClave, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(lblAplicación, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(lbltamaño, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1)
+                .addGap(154, 154, 154)
+                .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -160,9 +170,14 @@ public class frmInfoArchivo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAplicación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblAplicación1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,7 +197,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
     private void RegresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegresarMouseExited
         Regresar.setBackground(new Color(153, 51, 0));
     }//GEN-LAST:event_RegresarMouseExited
-
+    
     private void obtenerInformacionPDF(File archivoPDF) throws IOException {
         String archivo = "D:\\URL\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\proyecto_1/archivo.txt";
         Métodos met = new Métodos();
@@ -197,7 +212,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         String asunto = info.getSubject();
         String palabrasClave = info.getKeywords();
         String aplicacionCreadora = info.getCreator();
-
+        
         met.escribirArchivo(archivo, "Título: " + titulo);
         met.escribirArchivo(archivo, "Asunto: " + asunto);
         met.escribirArchivo(archivo, "Palabras Clave: " + palabrasClave);
@@ -205,7 +220,9 @@ public class frmInfoArchivo extends javax.swing.JFrame {
 
         // Obtiene el número de páginas del documento
         int numPaginas = pdf.getNumberOfPages();
-
+        float version = pdf.getVersion();
+        lblVersion.setText(version + "");
+        
         met.escribirArchivo(archivo, "Número de páginas: " + numPaginas);
 
         // Obtiene el tamaño de las páginas
@@ -232,7 +249,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lblTítulo.setText("El archivo PDF no tiene título.");
             met.escribirArchivo(archivo, "El archivo PDF no tiene título.");
         }
-
+        
         if (asunto != null && !asunto.isEmpty()) {
             lblAsunto.setText(asunto);
             met.escribirArchivo(archivo, "Asunto: " + asunto);
@@ -240,7 +257,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lblAsunto.setText("El archivo PDF no tiene asunto.");
             met.escribirArchivo(archivo, "El archivo PDF no tiene asunto.");
         }
-
+        
         if (palabrasClave != null && !palabrasClave.isEmpty()) {
             lblPalabrasClave.setText(palabrasClave);
             met.escribirArchivo(archivo, "Palabras Clave: " + palabrasClave);
@@ -248,7 +265,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lblPalabrasClave.setText("El archivo PDF no tiene palabras clave.");
             met.escribirArchivo(archivo, "El archivo PDF no tiene palabras clave.");
         }
-
+        
         if (aplicacionCreadora != null && !aplicacionCreadora.isEmpty()) {
             lblAplicación.setText(aplicacionCreadora);
             met.escribirArchivo(archivo, "Aplicación creadora del archivo: " + aplicacionCreadora);
@@ -256,6 +273,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lblAplicación.setText("El archivo PDF no tiene la aplicación creadora.");
             met.escribirArchivo(archivo, "Aplicación creadora del archivo: " + "El archivo PDF no tiene la aplicación creadora.");
         }
+        met.escribirArchivo(archivo, "La versión del PDF es: " + version);
 
         // Cierra el documento PDF
         pdf.close();
@@ -293,7 +311,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             public void run(File archivoPDF) throws IOException {
                 new frmInfoArchivo(archivoPDF).setVisible(true);
             }
-
+            
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -311,11 +329,14 @@ public class frmInfoArchivo extends javax.swing.JFrame {
     private java.awt.Label label5;
     private java.awt.Label label6;
     private java.awt.Label label7;
+    private java.awt.Label label8;
     private java.awt.Label lblAplicación;
+    private java.awt.Label lblAplicación1;
     private java.awt.Label lblAsunto;
     private java.awt.Label lblNoDePáginas;
     private java.awt.Label lblPalabrasClave;
     private java.awt.Label lblTítulo;
+    private java.awt.Label lblVersion;
     private java.awt.Label lbltamaño;
     // End of variables declaration//GEN-END:variables
 }
