@@ -51,7 +51,6 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Página principal");
-        setIconImage(getIconImage());
         setIconImages(null);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));

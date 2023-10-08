@@ -4,11 +4,14 @@
  */
 package com.mycompany.proyecto_1.Interfaces;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.pdmodel.PDPage;
+
+import com.mycompany.proyecto_1.Métodos;
 
 /**
  *
@@ -49,6 +52,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         lblAplicación = new java.awt.Label();
         Regresar = new java.awt.Button();
         label7 = new java.awt.Label();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Información de PDF");
@@ -68,6 +72,14 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         Regresar.setBackground(new java.awt.Color(255, 102, 51));
         Regresar.setLabel("Regresar");
         Regresar.setName(""); // NOI18N
+        Regresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RegresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RegresarMouseExited(evt);
+            }
+        });
         Regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegresarActionPerformed(evt);
@@ -77,10 +89,21 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         label7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         label7.setText("INFORMACIÓN DEL PDF");
 
+        jSeparator1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -99,22 +122,19 @@ public class frmInfoArchivo extends javax.swing.JFrame {
                     .addComponent(lblAplicación, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(lbltamaño, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -155,7 +175,19 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         this.show(false);
     }//GEN-LAST:event_RegresarActionPerformed
 
+    private void RegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegresarMouseEntered
+        Regresar.setBackground(new Color(255, 102, 51));
+    }//GEN-LAST:event_RegresarMouseEntered
+
+    private void RegresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegresarMouseExited
+        Regresar.setBackground(new Color(153, 51, 0));
+    }//GEN-LAST:event_RegresarMouseExited
+
     private void obtenerInformacionPDF(File archivoPDF) throws IOException {
+        String archivo = "D:\\URL\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\proyecto_1/archivo.txt";
+        Métodos met = new Métodos();
+        met.crearArchivo(archivo);
+
         // Abre el archivo PDF
         PDDocument pdf = PDDocument.load(archivoPDF);
 
@@ -166,8 +198,15 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         String palabrasClave = info.getKeywords();
         String aplicacionCreadora = info.getCreator();
 
+        met.escribirArchivo(archivo, "Título: " + titulo);
+        met.escribirArchivo(archivo, "Asunto: " + asunto);
+        met.escribirArchivo(archivo, "Palabras Clave: " + palabrasClave);
+        met.escribirArchivo(archivo, "Aplicación Creadora: " + aplicacionCreadora);
+
         // Obtiene el número de páginas del documento
         int numPaginas = pdf.getNumberOfPages();
+
+        met.escribirArchivo(archivo, "Número de páginas: " + numPaginas);
 
         // Obtiene el tamaño de las páginas
         for (int pageNum = 0; pageNum < numPaginas; pageNum++) {
@@ -183,30 +222,39 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         long tamanoBytes = archivoPDF.length();
         lblNoDePáginas.setText(numPaginas + "");
         lbltamaño.setText(tamanoBytes / 1000 + " Kilobytes");
+        met.escribirArchivo(archivo, "Tamaño: " + tamanoBytes / 1000 + " Kilobytes");
 
         // Muestra el título del PDF
         if (titulo != null && !titulo.isEmpty()) {
             lblTítulo.setText(titulo);
+            met.escribirArchivo(archivo, "Título: " + titulo);
         } else {
             lblTítulo.setText("El archivo PDF no tiene título.");
+            met.escribirArchivo(archivo, "El archivo PDF no tiene título.");
         }
 
         if (asunto != null && !asunto.isEmpty()) {
             lblAsunto.setText(asunto);
+            met.escribirArchivo(archivo, "Asunto: " + asunto);
         } else {
             lblAsunto.setText("El archivo PDF no tiene asunto.");
+            met.escribirArchivo(archivo, "El archivo PDF no tiene asunto.");
         }
 
         if (palabrasClave != null && !palabrasClave.isEmpty()) {
             lblPalabrasClave.setText(palabrasClave);
+            met.escribirArchivo(archivo, "Palabras Clave: " + palabrasClave);
         } else {
             lblPalabrasClave.setText("El archivo PDF no tiene palabras clave.");
+            met.escribirArchivo(archivo, "El archivo PDF no tiene palabras clave.");
         }
 
         if (aplicacionCreadora != null && !aplicacionCreadora.isEmpty()) {
             lblAplicación.setText(aplicacionCreadora);
+            met.escribirArchivo(archivo, "Aplicación creadora del archivo: " + aplicacionCreadora);
         } else {
             lblAplicación.setText("El archivo PDF no tiene la aplicación creadora.");
+            met.escribirArchivo(archivo, "Aplicación creadora del archivo: " + "El archivo PDF no tiene la aplicación creadora.");
         }
 
         // Cierra el documento PDF
@@ -255,6 +303,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button Regresar;
+    private javax.swing.JSeparator jSeparator1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
