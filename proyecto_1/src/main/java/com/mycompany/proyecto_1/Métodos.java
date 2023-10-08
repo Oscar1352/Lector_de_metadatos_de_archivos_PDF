@@ -31,8 +31,7 @@ public class Métodos {
             pw.println(texto);
             pw.close();
 
-            // Mensaje para indicar que se cre+ó el archivo con éxito
-            System.out.println("Se agregó contenido al archivo");
+            // Mensaje para indicar que se creó el archivo con éxito
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
         } catch (IOException ex) {

@@ -1,10 +1,11 @@
 Título: null
 Asunto: null
 Palabras Clave: null
-Aplicación Creadora: JasperReports (Calcomania_CE)
+Aplicación Creadora: Microsoft® Word para Microsoft 365
 Número de páginas: 1
-Tamaño: 32 Kilobytes
+Tamaño del archivo: 150.0 Kilobytes
 El archivo PDF no tiene título.
 El archivo PDF no tiene asunto.
 El archivo PDF no tiene palabras clave.
-Aplicación creadora del archivo: JasperReports (Calcomania_CE)
+Aplicación creadora del archivo: Microsoft® Word para Microsoft 365
+La versión del PDF es: 1.7
