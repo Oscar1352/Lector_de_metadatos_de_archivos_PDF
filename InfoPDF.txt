@@ -1,0 +1,26 @@
+Tamaño del archivo: 301.0 Kilobytes
+Tamaño de las paginas: 
+Numero pagina: 1
+Ancho:612.0
+Alto:792.0
+Numero pagina: 2
+Ancho:612.0
+Alto:792.0
+Numero pagina: 3
+Ancho:612.0
+Alto:792.0
+Numero pagina: 4
+Ancho:612.0
+Alto:792.0
+Número de páginas: 4
+El archivo PDF no tiene título.
+Asunto: Clases virtuales
+El archivo PDF no tiene palabras clave.
+El tipo de archivo PDF es: No encriptado
+La versión del PDF es: 1.6
+Aplicación creadora del archivo: Acrobat PDFMaker 19 para Word
+Página 0: Imagen encontrada - Formato: png, Ancho: 507, Alto: 181
+Página 1: Imagen encontrada - Formato: png, Ancho: 507, Alto: 181
+Página 2: Imagen encontrada - Formato: png, Ancho: 507, Alto: 181
+Página 3: Imagen encontrada - Formato: png, Ancho: 507, Alto: 181
+Fuentes únicas: Courier-BoldOblique, Calibri, Times New Roman, Arial

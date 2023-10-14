@@ -7,11 +7,22 @@ package com.mycompany.proyecto_1.Interfaces;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDResources;
+import org.apache.pdfbox.cos.COSDictionary;
+import org.apache.pdfbox.pdmodel.graphics.PDXObject;
+import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import com.mycompany.proyecto_1.Métodos;
+import java.util.HashSet;
+import java.util.Set;
+import org.apache.pdfbox.cos.COSName;
+
 
 /**
  *
@@ -206,7 +217,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarMouseExited
 
     private void obtenerInformacionPDF(File archivoPDF) throws IOException {
-        String archivo = "D:\\URL\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\proyecto_1/archivo.txt";
+        String archivo = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\InfoPDF.txt";
         Métodos met = new Métodos();
         met.crearArchivo(archivo);
 
@@ -220,29 +231,12 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         String palabrasClave = info.getKeywords();
         String aplicacionCreadora = info.getCreator();
 
-        met.escribirArchivo(archivo, "Título: " + titulo);
-        met.escribirArchivo(archivo, "Asunto: " + asunto);
-        met.escribirArchivo(archivo, "Palabras Clave: " + palabrasClave);
-        met.escribirArchivo(archivo, "Aplicación Creadora: " + aplicacionCreadora);
-
         // Obtiene el número de páginas del documento
         int numPaginas = pdf.getNumberOfPages();
         float version = pdf.getVersion();
         lblVersion.setText(version + "");
-
-        met.escribirArchivo(archivo, "Número de páginas: " + numPaginas);
-
-        // Obtiene el tamaño de las páginas
-        for (int pageNum = 0; pageNum < numPaginas; pageNum++) {
-            PDPage page = pdf.getPage(pageNum);
-            float ancho = page.getMediaBox().getWidth();
-            float alto = page.getMediaBox().getHeight();
-            System.out.println("Página " + (pageNum + 1) + ":");
-            System.out.println("Ancho: " + ancho + " puntos");
-            System.out.println("Alto: " + alto + " puntos");
-        }
-
-        // Obtiene el tamaño del archivo
+        
+        // Obtiene el tamaño del archivo del pdf
         long tamanoBytes = archivoPDF.length();
         float tamaño = tamanoBytes / 1000;
         lblNoDePáginas.setText(numPaginas + "");
@@ -252,6 +246,21 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lbltamaño.setText(tamaño + " Kilobytes");
         }
         met.escribirArchivo(archivo, "Tamaño del archivo: "+ lbltamaño.getText());
+        met.escribirArchivo(archivo, "Tamaño de las paginas: ");
+        
+        // Obtiene el tamaño de las páginas del pdf
+        for (int pageNum = 0; pageNum < numPaginas; pageNum++) {
+            PDPage page = pdf.getPage(pageNum);
+            float ancho = page.getMediaBox().getWidth();
+            float alto = page.getMediaBox().getHeight();
+            
+            met.escribirArchivo(archivo, "Numero pagina: " + (pageNum+1));
+            met.escribirArchivo(archivo, "Ancho:" + ancho);
+            met.escribirArchivo(archivo, "Alto:" + alto);
+        }
+
+        // Determinar el numero de paginas del pdf
+        met.escribirArchivo(archivo, "Número de páginas: " + numPaginas);
 
         // Muestra el título del PDF
         if (titulo != null && !titulo.isEmpty()) {
@@ -262,6 +271,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             met.escribirArchivo(archivo, "El archivo PDF no tiene título.");
         }
 
+        // Determinar el asunto de un pdf
         if (asunto != null && !asunto.isEmpty()) {
             lblAsunto.setText(asunto);
             met.escribirArchivo(archivo, "Asunto: " + asunto);
@@ -270,6 +280,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             met.escribirArchivo(archivo, "El archivo PDF no tiene asunto.");
         }
 
+        // Determinar las palabras claves de un pdf
         if (palabrasClave != null && !palabrasClave.isEmpty()) {
             lblPalabrasClave.setText(palabrasClave);
             met.escribirArchivo(archivo, "Palabras Clave: " + palabrasClave);
@@ -277,7 +288,18 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lblPalabrasClave.setText("El archivo PDF no tiene palabras clave.");
             met.escribirArchivo(archivo, "El archivo PDF no tiene palabras clave.");
         }
+        
+        // Determinar tipo de archivo pdf
+            if (pdf.isEncrypted()) {
+                met.escribirArchivo(archivo, "El tipo de archivo PDF es: Encriptado");
+            } else {
+                met.escribirArchivo(archivo, "El tipo de archivo PDF es: No encriptado");
+            }
+        
+        // Determinar la version del pdf
+        met.escribirArchivo(archivo, "La versión del PDF es: " + version);
 
+        // Determinar con que se creo el archivo pdf
         if (aplicacionCreadora != null && !aplicacionCreadora.isEmpty()) {
             lblAplicación.setText(aplicacionCreadora);
             met.escribirArchivo(archivo, "Aplicación creadora del archivo: " + aplicacionCreadora);
@@ -285,7 +307,58 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lblAplicación.setText("El archivo PDF no tiene la aplicación creadora.");
             met.escribirArchivo(archivo, "Aplicación creadora del archivo: " + "El archivo PDF no tiene la aplicación creadora.");
         }
-        met.escribirArchivo(archivo, "La versión del PDF es: " + version);
+        
+        // Determinar las imagenes del pdf
+            int pageNum = 0;
+
+            for (PDPage page : pdf.getPages()) {
+                PDResources resources = page.getResources();
+                for (COSName xObjectName : resources.getXObjectNames()) {
+                    PDXObject xObject = resources.getXObject(xObjectName);
+                    if (xObject instanceof PDImageXObject) {
+                        PDImageXObject image = (PDImageXObject) xObject;
+                        met.escribirArchivo(archivo, "Página " + pageNum + ": Imagen encontrada - Formato: " + image.getSuffix() + ", Ancho: " + image.getWidth() + ", Alto: " + image.getHeight());
+                    } else if (xObject instanceof PDFormXObject) {
+                        PDFormXObject form = (PDFormXObject) xObject;
+                        for (COSName subXObjectName : form.getResources().getXObjectNames()) {
+                            PDXObject subXObject = form.getResources().getXObject(subXObjectName);
+                            if (subXObject instanceof PDImageXObject) {
+                                PDImageXObject subImage = (PDImageXObject) subXObject;
+                                met.escribirArchivo(archivo, "Página " + pageNum + ": Imagen encontrada - Formato: " + subImage.getSuffix() + ", Ancho: " + subImage.getWidth() + ", Alto: " + subImage.getHeight());
+                            }
+                        }
+                    }
+                }
+
+                pageNum++;
+            }
+        
+        // Determinar las fuentes del pdf
+            Map<String, String> fontMapping = new HashMap<>();
+            // Agrega mapeo de nombres técnicos a nombres legibles
+            fontMapping.put("TT0", "Times New Roman");
+            fontMapping.put("TT1", "Calibri");
+            fontMapping.put("TT2", "Arial");
+            fontMapping.put("TT3", "Courier-BoldOblique");
+            // Agrega más mapeos según sea necesario
+
+            Set<String> uniqueFonts = new HashSet<>();
+
+            for (PDPage page : pdf.getPages()) {
+                PDResources resources = page.getResources();
+                COSDictionary fonts = (COSDictionary) resources.getCOSObject().getDictionaryObject(COSName.FONT);
+                if (fonts != null) {
+                    for (COSName fontName : fonts.keySet()) {
+                        String fontNameString = fontName.getName();
+                        String mappedFontName = fontMapping.get(fontNameString);
+                        if (mappedFontName != null) {
+                            uniqueFonts.add(mappedFontName);
+                        }
+                    }
+                }
+            }
+
+            met.escribirArchivo(archivo, "Fuentes únicas: " + String.join(", ", uniqueFonts));
 
         // Cierra el documento PDF
         pdf.close();
