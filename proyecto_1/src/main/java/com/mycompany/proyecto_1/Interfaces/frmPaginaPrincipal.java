@@ -9,12 +9,22 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.apache.pdfbox.cos.COSDictionary;
+import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
+import org.apache.pdfbox.pdmodel.PDResources;
+import org.apache.pdfbox.pdmodel.graphics.PDXObject;
+import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 /**
  *
@@ -184,11 +194,44 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         String parent = archivoSeleccionado.getParent();
         String nuevoParent = parent.replaceAll("\\\\", "\\\\\\\\");
         JOptionPane.showMessageDialog(null, "Carpeta Seleccionada -> " + nuevoParent);
+        
+        String rutaCarpeta = nuevoParent;
 
-        CalcularTamañoArchivos(nuevoParent);
-        CalcularTamañoPaginas(nuevoParent);
-        CalcularNumeroPaginas(nuevoParent);
-        ObtenerTitulo(nuevoParent);
+        File carpeta = new File(rutaCarpeta);
+
+        if (carpeta.exists() && carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles();
+
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    if (archivo.isFile() && archivo.getName().toLowerCase().endsWith(".pdf")) {
+                        try {
+                            PDDocument pdf = PDDocument.load(archivo);
+                            PDDocumentInformation info = pdf.getDocumentInformation();
+                            
+                            System.out.println("Archivo: " + archivo.getName());
+                            CalcularTamañoArchivos(archivo);
+                            CalcularTamañoPaginas(archivo);
+                            CalcularNumeroPaginas(pdf);
+                            ObtenerTitulo(info);
+                            ObtenerAsuntoPDF(info);
+                            ObtenerPalabrasClaves(info);
+                            ObtenerTipoPDF(pdf);
+                            ObtenerVersionPDF(pdf);
+                            ObtenerAplicacionCreador(info);
+                            ObtenerImagenes(pdf);
+                            ObtenerFuentes(pdf);
+                            System.out.println("**************************************************");
+                            pdf.close();
+                        } catch (IOException e) {
+                            System.err.println("Error al leer el archivo PDF: " + archivo.getName());
+                    }
+                }
+            }
+        } else {
+            System.err.println("La carpeta no existe o no es una carpeta válida.");
+        }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -241,123 +284,161 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public static void CalcularTamañoArchivos(String ruta) {
-        String rutaCarpeta = ruta;
-
-        File carpeta = new File(rutaCarpeta);
-
-        if (carpeta.exists() && carpeta.isDirectory()) {
-            File[] archivos = carpeta.listFiles();
-
-            if (archivos != null) {
-                for (File archivo : archivos) {
-                    if (archivo.isFile() && archivo.getName().toLowerCase().endsWith(".pdf")) {
-                        long tamanoBytes = archivo.length() / 1000;
-
-                        System.out.println("Archivo: " + archivo.getName());
-                        System.out.println("Tamaño en bytes: " + tamanoBytes + " Kilobytes");
-                        System.out.println("------------------------");
-                    }
-                }
-            }
+    // Definiar el tamaño de los archivos pdfs
+    public static void CalcularTamañoArchivos(File archivo) {
+        long tamanoBytes = archivo.length();
+        float tamaño = tamanoBytes / 1000;
+        
+        if (tamaño > 1000) {
+            System.out.println(tamaño / 1000 + " Megabytes");
         } else {
-            System.err.println("La carpeta no existe o no es una carpeta válida.");
+            System.out.println(tamaño + " Kilobytes");
         }
     }
+    
+        // Definir el tamaño de las paginas de los archivos pdfs
+    public static void CalcularTamañoPaginas(File archivo) {
 
-    public static void CalcularNumeroPaginas(String ruta) {
-        String rutaCarpeta = ruta;
+        try (PDDocument document = PDDocument.load(archivo)) {
+            int numeroDePaginas = document.getNumberOfPages();
 
-        File carpeta = new File(rutaCarpeta);
+            for (int pageNum = 0; pageNum < numeroDePaginas; pageNum++) {
+                PDPage page = document.getPage(pageNum);
 
-        if (carpeta.exists() && carpeta.isDirectory()) {
-            File[] archivos = carpeta.listFiles();
+                float ancho = page.getMediaBox().getWidth();
+                float alto = page.getMediaBox().getHeight();
 
-            if (archivos != null) {
-                for (File archivo : archivos) {
-                    if (archivo.isFile() && archivo.getName().toLowerCase().endsWith(".pdf")) {
-                        try {
-                            PDDocument pdf = PDDocument.load(archivo);
-                            int numPaginas = pdf.getNumberOfPages();
-                            pdf.close();
-
-                            System.out.println("Archivo: " + archivo.getName());
-                            System.out.println("Número de páginas: " + numPaginas);
-                            System.out.println("------------------------");
-                        } catch (IOException e) {
-                            System.err.println("Error al leer el archivo PDF: " + archivo.getName());
-                        }
-                    }
-                }
+                System.out.println("Página " + (pageNum + 1) + ":");
+                System.out.println("Ancho: " + ancho + " puntos");
+                System.out.println("Alto: " + alto + " puntos");
+                System.out.println();
             }
+            System.out.println("------------------------");
+        } catch (IOException e) {
+        }
+    }
+ 
+
+    // Calcular el numero de paginas de los archivos pdfs
+    public static void CalcularNumeroPaginas(PDDocument pdf) {
+        int numPaginas = pdf.getNumberOfPages();
+
+        System.out.println("Número de páginas: " + numPaginas);
+    }
+
+    // Definir el titulo de los archivos pdfs
+    public static void ObtenerTitulo(PDDocumentInformation info) {
+        String titulo = info.getTitle();
+        
+        if (titulo != null && !titulo.isEmpty()) {
+            System.out.println("Titulo: " + titulo);
         } else {
-            System.err.println("La carpeta no existe o no es una carpeta válida.");
+            System.out.println("El archivo PDF no tiene título.");
+        }
+    } 
+
+    // Determinar el asuntos de los archivos pdfs
+    public static void ObtenerAsuntoPDF(PDDocumentInformation info) {
+        String asuntoPDF = info.getSubject();
+        
+        if (asuntoPDF != null && !asuntoPDF.isEmpty()) {
+            System.out.println("Asunto: " + asuntoPDF);
+        } else {
+            System.out.println("El archivo PDF no tiene asunto");
         }
     }
+    
+    // Determinar las palabras claves del pdf
+    public static void ObtenerPalabrasClaves(PDDocumentInformation info){
+        String palabrasClave = info.getKeywords();
+        
+        if (palabrasClave != null && !palabrasClave.isEmpty()) {
+            System.out.println("Palabras clave: " + palabrasClave);
+        } else {
+            System.out.println("Este archivo no tiene palabras clave");
+        }
+    }
+    
+    // Determinar el tipo de pdf que es
+    public static void ObtenerTipoPDF(PDDocument pdf) {
+            if (pdf.isEncrypted()) {
+                System.out.println("El tipo de archivo PDF es: Encriptado");
+            } else {
+                System.out.println("El tipo de archivo PDF es: No encriptado");
+            }
+    }
+    
+    // Determinar la version del pdf
+    public static void ObtenerVersionPDF(PDDocument pdf){
+        float version = pdf.getVersion();
+        
+        System.out.println("Numero de version: " + version);
+    }
+        
+    // Determinar la aplicacion con la que fue creada el pdf
+    public static void ObtenerAplicacionCreador(PDDocumentInformation info){
+        String aplicacionCreadora = info.getCreator();
+        
+        if (aplicacionCreadora != null && !aplicacionCreadora.isEmpty()) {
+            System.out.println("Aplicación creadora del archivo: " + aplicacionCreadora);
+        } else {
+            System.out.println("El archivo PDF no tiene la aplicación creadora.");
+        }
+    }
+    
+    // Determinar las imagenes del pdf
+    public static void ObtenerImagenes(PDDocument pdf) throws IOException{
+        int pageNum = 0;
 
-    public static void ObtenerTitulo(String ruta) {
-        String rutaCarpeta = ruta;
-
-        File directorio = new File(rutaCarpeta);
-
-        if (directorio.isDirectory()) {
-            File[] archivosPDF = directorio.listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".pdf"));
-
-            if (archivosPDF != null) {
-                for (File archivo : archivosPDF) {
-                    try (PDDocument document = PDDocument.load(archivo)) {
-                        PDDocumentInformation info = document.getDocumentInformation();
-                        String titulo = info.getTitle();
-
-                        if (titulo != null && !titulo.isEmpty()) {
-                            System.out.println("Archivo: " + archivo.getName());
-                            System.out.println("Titulo: " + titulo);
-                            System.out.println("------------------------");
-                        } else {
-                            System.out.println("El archivo '" + archivo.getName() + "' no tiene título.");
-                            System.out.println("------------------------");
+        for (PDPage page : pdf.getPages()) {
+            PDResources resources = page.getResources();
+            for (COSName xObjectName : resources.getXObjectNames()) {
+                PDXObject xObject = resources.getXObject(xObjectName);
+                if (xObject instanceof PDImageXObject) {
+                    PDImageXObject image = (PDImageXObject) xObject;
+                    System.out.println("Página " + pageNum + ": Imagen encontrada - Formato: " + image.getSuffix() + ", Ancho: " + image.getWidth() + ", Alto: " + image.getHeight());
+                } else if (xObject instanceof PDFormXObject) {
+                    PDFormXObject form = (PDFormXObject) xObject;
+                    for (COSName subXObjectName : form.getResources().getXObjectNames()) {
+                        PDXObject subXObject = form.getResources().getXObject(subXObjectName);
+                        if (subXObject instanceof PDImageXObject) {
+                            PDImageXObject subImage = (PDImageXObject) subXObject;
+                            System.out.println("Página " + pageNum + ": Imagen encontrada - Formato: " + subImage.getSuffix() + ", Ancho: " + subImage.getWidth() + ", Alto: " + subImage.getHeight());
                         }
-                    } catch (IOException e) {
+                    }
+                }
+            }
+
+            pageNum++;
+        }
+    }
+    
+    // Determinar las fuentes del pdf
+    public static void ObtenerFuentes(PDDocument pdf){
+        Map<String, String> fontMapping = new HashMap<>();
+        fontMapping.put("TT0", "Times New Roman");
+        fontMapping.put("TT1", "Calibri");
+        fontMapping.put("TT2", "Arial");
+        fontMapping.put("TT3", "Courier-BoldOblique");
+
+        Set<String> uniqueFonts = new HashSet<>();
+
+        for (PDPage page : pdf.getPages()) {
+            PDResources resources = page.getResources();
+            COSDictionary fonts = (COSDictionary) resources.getCOSObject().getDictionaryObject(COSName.FONT);
+            if (fonts != null) {
+                for (COSName fontName : fonts.keySet()) {
+                    String fontNameString = fontName.getName();
+                    String mappedFontName = fontMapping.get(fontNameString);
+                    if (mappedFontName != null) {
+                        uniqueFonts.add(mappedFontName);
                     }
                 }
             }
         }
+
+        System.out.println("Fuentes únicas: " + String.join(", ", uniqueFonts));
     }
-
-    public static void CalcularTamañoPaginas(String ruta) {
-        String rutaCarpeta = ruta;
-
-        File directorio = new File(rutaCarpeta);
-
-        if (directorio.isDirectory()) {
-            File[] archivosPDF = directorio.listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".pdf"));
-
-            if (archivosPDF != null) {
-                for (File archivo : archivosPDF) {
-                    try (PDDocument document = PDDocument.load(archivo)) {
-                        int numeroDePaginas = document.getNumberOfPages();
-
-                        System.out.println("Archivo: " + archivo.getName());
-
-                        for (int pageNum = 0; pageNum < numeroDePaginas; pageNum++) {
-                            PDPage page = document.getPage(pageNum);
-
-                            float ancho = page.getMediaBox().getWidth();
-                            float alto = page.getMediaBox().getHeight();
-
-                            System.out.println("Página " + (pageNum + 1) + ":");
-                            System.out.println("Ancho: " + ancho + " puntos");
-                            System.out.println("Alto: " + alto + " puntos");
-                            System.out.println();
-                        }
-                        System.out.println("------------------------");
-                    } catch (IOException e) {
-                    }
-                }
-            }
-        }
-    }
-
     /**
      * @param args the command line arguments
      */

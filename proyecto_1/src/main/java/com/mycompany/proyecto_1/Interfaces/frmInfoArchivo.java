@@ -233,6 +233,8 @@ public class frmInfoArchivo extends javax.swing.JFrame {
 
         // Obtiene el número de páginas del documento
         int numPaginas = pdf.getNumberOfPages();
+        
+        // Obtiene la version del pdf
         float version = pdf.getVersion();
         lblVersion.setText(version + "");
         
