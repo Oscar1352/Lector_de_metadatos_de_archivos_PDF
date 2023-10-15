@@ -1,0 +1,163 @@
+Archivo: Clase 10.pdf
+731.0 Kilobytes
+Página 1:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Página 2:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Página 3:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Página 4:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Página 5:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Número de páginas: 5
+El archivo PDF no tiene título.
+El archivo PDF no tiene asunto
+Este archivo no tiene palabras clave
+El tipo de archivo PDF es: No encriptado
+Numero de version: 1.6
+Aplicación creadora del archivo: Acrobat PDFMaker 19 para Word
+Página 0: Imagen encontrada - Formato: png, Ancho: 378, Alto: 133
+Página 0: Imagen encontrada - Formato: png, Ancho: 1324, Alto: 575
+Página 0: Imagen encontrada - Formato: png, Ancho: 1034, Alto: 609
+Página 1: Imagen encontrada - Formato: png, Ancho: 378, Alto: 133
+Página 1: Imagen encontrada - Formato: png, Ancho: 661, Alto: 577
+Página 1: Imagen encontrada - Formato: png, Ancho: 930, Alto: 612
+Página 2: Imagen encontrada - Formato: png, Ancho: 378, Alto: 133
+Página 2: Imagen encontrada - Formato: png, Ancho: 1025, Alto: 653
+Página 2: Imagen encontrada - Formato: png, Ancho: 1105, Alto: 607
+Página 3: Imagen encontrada - Formato: png, Ancho: 378, Alto: 133
+Página 3: Imagen encontrada - Formato: png, Ancho: 1168, Alto: 617
+Página 3: Imagen encontrada - Formato: png, Ancho: 1305, Alto: 620
+Página 4: Imagen encontrada - Formato: png, Ancho: 378, Alto: 133
+Fuentes únicas: Courier-BoldOblique, Calibri, Times New Roman, Arial
+**************************************************
+Archivo: Proyecto-2023.pdf
+301.0 Kilobytes
+Página 1:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Página 2:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Página 3:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Página 4:
+Ancho: 612.0 puntos
+Alto: 792.0 puntos
+Número de páginas: 4
+El archivo PDF no tiene título.
+Asunto: Clases virtuales
+Este archivo no tiene palabras clave
+El tipo de archivo PDF es: No encriptado
+Numero de version: 1.6
+Aplicación creadora del archivo: Acrobat PDFMaker 19 para Word
+Página 0: Imagen encontrada - Formato: png, Ancho: 507, Alto: 181
+Página 1: Imagen encontrada - Formato: png, Ancho: 507, Alto: 181
+Página 2: Imagen encontrada - Formato: png, Ancho: 507, Alto: 181
+Página 3: Imagen encontrada - Formato: png, Ancho: 507, Alto: 181
+Fuentes únicas: Courier-BoldOblique, Calibri, Times New Roman, Arial
+**************************************************
+Archivo: Tablas Hash.pdf
+9.09 Megabytes
+Página 1:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 2:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 3:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 4:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 5:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 6:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 7:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 8:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 9:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 10:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 11:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 12:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 13:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 14:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 15:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 16:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 17:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 18:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Página 19:
+Ancho: 1440.0 puntos
+Alto: 810.0 puntos
+Número de páginas: 19
+Titulo: Tablas
+El archivo PDF no tiene asunto
+Palabras clave: DAFOIAiJ_Cs,BADQseUAyT0
+El tipo de archivo PDF es: No encriptado
+Numero de version: 1.4
+Aplicación creadora del archivo: Canva
+Página 0: Imagen encontrada - Formato: jpg, Ancho: 1800, Alto: 1200
+Página 0: Imagen encontrada - Formato: png, Ancho: 902, Alto: 318
+Página 0: Imagen encontrada - Formato: png, Ancho: 388, Alto: 119
+Página 1: Imagen encontrada - Formato: png, Ancho: 926, Alto: 514
+Página 2: Imagen encontrada - Formato: png, Ancho: 926, Alto: 514
+Página 3: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 3: Imagen encontrada - Formato: png, Ancho: 1408, Alto: 803
+Página 4: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 4: Imagen encontrada - Formato: png, Ancho: 1480, Alto: 798
+Página 5: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 5: Imagen encontrada - Formato: png, Ancho: 1392, Alto: 814
+Página 6: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 6: Imagen encontrada - Formato: png, Ancho: 1524, Alto: 758
+Página 7: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 7: Imagen encontrada - Formato: png, Ancho: 948, Alto: 546
+Página 8: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 8: Imagen encontrada - Formato: png, Ancho: 1446, Alto: 753
+Página 9: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 9: Imagen encontrada - Formato: png, Ancho: 1527, Alto: 902
+Página 10: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 10: Imagen encontrada - Formato: png, Ancho: 1547, Alto: 866
+Página 11: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 11: Imagen encontrada - Formato: png, Ancho: 1500, Alto: 881
+Página 12: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 12: Imagen encontrada - Formato: png, Ancho: 1521, Alto: 881
+Página 13: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 13: Imagen encontrada - Formato: png, Ancho: 1527, Alto: 818
+Página 18: Imagen encontrada - Formato: jpg, Ancho: 2006, Alto: 1339
+Página 18: Imagen encontrada - Formato: png, Ancho: 906, Alto: 976
+Fuentes únicas: 
+**************************************************

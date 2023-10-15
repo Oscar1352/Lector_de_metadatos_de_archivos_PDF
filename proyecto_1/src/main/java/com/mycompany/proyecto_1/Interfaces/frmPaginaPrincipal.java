@@ -26,6 +26,8 @@ import org.apache.pdfbox.pdmodel.graphics.PDXObject;
 import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+import com.mycompany.proyecto_1.Métodos;
+
 /**
  *
  * @author urbin
@@ -186,6 +188,10 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String archivo_guardar = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\InfoCarpetaPDFS.txt";
+        Métodos met = new Métodos();
+        met.crearArchivo(archivo_guardar);
+        
         JFileChooser jfc = new JFileChooser();
 
         jfc.showOpenDialog(jfc);
@@ -209,19 +215,19 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                             PDDocument pdf = PDDocument.load(archivo);
                             PDDocumentInformation info = pdf.getDocumentInformation();
                             
-                            System.out.println("Archivo: " + archivo.getName());
-                            CalcularTamañoArchivos(archivo);
-                            CalcularTamañoPaginas(archivo);
-                            CalcularNumeroPaginas(pdf);
-                            ObtenerTitulo(info);
-                            ObtenerAsuntoPDF(info);
-                            ObtenerPalabrasClaves(info);
-                            ObtenerTipoPDF(pdf);
-                            ObtenerVersionPDF(pdf);
-                            ObtenerAplicacionCreador(info);
-                            ObtenerImagenes(pdf);
-                            ObtenerFuentes(pdf);
-                            System.out.println("**************************************************");
+                            met.escribirArchivo(archivo_guardar, "Archivo: " + archivo.getName());
+                            CalcularTamañoArchivos(archivo, archivo_guardar);
+                            CalcularTamañoPaginas(archivo, archivo_guardar);
+                            CalcularNumeroPaginas(pdf, archivo_guardar);
+                            ObtenerTitulo(info, archivo_guardar);
+                            ObtenerAsuntoPDF(info, archivo_guardar);
+                            ObtenerPalabrasClaves(info, archivo_guardar);
+                            ObtenerTipoPDF(pdf, archivo_guardar);
+                            ObtenerVersionPDF(pdf, archivo_guardar);
+                            ObtenerAplicacionCreador(info, archivo_guardar);
+                            ObtenerImagenes(pdf, archivo_guardar);
+                            ObtenerFuentes(pdf, archivo_guardar);
+                            met.escribirArchivo(archivo_guardar,"**************************************************");
                             pdf.close();
                         } catch (IOException e) {
                             System.err.println("Error al leer el archivo PDF: " + archivo.getName());
@@ -285,19 +291,22 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Definiar el tamaño de los archivos pdfs
-    public static void CalcularTamañoArchivos(File archivo) {
+    public static void CalcularTamañoArchivos(File archivo, String archivoGuardar) {
+        Métodos met = new Métodos();
+        
         long tamanoBytes = archivo.length();
         float tamaño = tamanoBytes / 1000;
         
         if (tamaño > 1000) {
-            System.out.println(tamaño / 1000 + " Megabytes");
+            met.escribirArchivo(archivoGuardar, tamaño / 1000 + " Megabytes");
         } else {
-            System.out.println(tamaño + " Kilobytes");
+            met.escribirArchivo(archivoGuardar, tamaño + " Kilobytes");
         }
     }
     
         // Definir el tamaño de las paginas de los archivos pdfs
-    public static void CalcularTamañoPaginas(File archivo) {
+    public static void CalcularTamañoPaginas(File archivo, String archivoGuardar) {
+        Métodos met = new Métodos();
 
         try (PDDocument document = PDDocument.load(archivo)) {
             int numeroDePaginas = document.getNumberOfPages();
@@ -308,10 +317,9 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                 float ancho = page.getMediaBox().getWidth();
                 float alto = page.getMediaBox().getHeight();
 
-                System.out.println("Página " + (pageNum + 1) + ":");
-                System.out.println("Ancho: " + ancho + " puntos");
-                System.out.println("Alto: " + alto + " puntos");
-                System.out.println();
+                met.escribirArchivo(archivoGuardar, "Página " + (pageNum + 1) + ":");
+                met.escribirArchivo(archivoGuardar, "Ancho: " + ancho + " puntos");
+                met.escribirArchivo(archivoGuardar, "Alto: " + alto + " puntos");
             }
             System.out.println("------------------------");
         } catch (IOException e) {
@@ -320,74 +328,82 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
  
 
     // Calcular el numero de paginas de los archivos pdfs
-    public static void CalcularNumeroPaginas(PDDocument pdf) {
+    public static void CalcularNumeroPaginas(PDDocument pdf, String archivoGuardar) {
+        Métodos met = new Métodos();
         int numPaginas = pdf.getNumberOfPages();
 
-        System.out.println("Número de páginas: " + numPaginas);
+        met.escribirArchivo(archivoGuardar, "Número de páginas: " + numPaginas);
     }
 
     // Definir el titulo de los archivos pdfs
-    public static void ObtenerTitulo(PDDocumentInformation info) {
+    public static void ObtenerTitulo(PDDocumentInformation info, String archivoGuardar) {
+        Métodos met = new Métodos();
         String titulo = info.getTitle();
         
         if (titulo != null && !titulo.isEmpty()) {
-            System.out.println("Titulo: " + titulo);
+            met.escribirArchivo(archivoGuardar, "Titulo: " + titulo);
         } else {
-            System.out.println("El archivo PDF no tiene título.");
+            met.escribirArchivo(archivoGuardar, "El archivo PDF no tiene título.");
         }
     } 
 
     // Determinar el asuntos de los archivos pdfs
-    public static void ObtenerAsuntoPDF(PDDocumentInformation info) {
+    public static void ObtenerAsuntoPDF(PDDocumentInformation info, String archivoGuardar) {
+        Métodos met = new Métodos();
         String asuntoPDF = info.getSubject();
         
         if (asuntoPDF != null && !asuntoPDF.isEmpty()) {
-            System.out.println("Asunto: " + asuntoPDF);
+            met.escribirArchivo(archivoGuardar, "Asunto: " + asuntoPDF);
         } else {
-            System.out.println("El archivo PDF no tiene asunto");
+            met.escribirArchivo(archivoGuardar, "El archivo PDF no tiene asunto");
         }
     }
     
     // Determinar las palabras claves del pdf
-    public static void ObtenerPalabrasClaves(PDDocumentInformation info){
+    public static void ObtenerPalabrasClaves(PDDocumentInformation info, String archivoGuardar){
+        Métodos met = new Métodos();
         String palabrasClave = info.getKeywords();
         
         if (palabrasClave != null && !palabrasClave.isEmpty()) {
-            System.out.println("Palabras clave: " + palabrasClave);
+            met.escribirArchivo(archivoGuardar,"Palabras clave: " + palabrasClave);
         } else {
-            System.out.println("Este archivo no tiene palabras clave");
+            met.escribirArchivo(archivoGuardar,"Este archivo no tiene palabras clave");
         }
     }
     
     // Determinar el tipo de pdf que es
-    public static void ObtenerTipoPDF(PDDocument pdf) {
-            if (pdf.isEncrypted()) {
-                System.out.println("El tipo de archivo PDF es: Encriptado");
-            } else {
-                System.out.println("El tipo de archivo PDF es: No encriptado");
-            }
+    public static void ObtenerTipoPDF(PDDocument pdf, String archivoGuardar) {
+        Métodos met = new Métodos();
+        if (pdf.isEncrypted()) {
+            met.escribirArchivo(archivoGuardar, "El tipo de archivo PDF es: Encriptado");
+        } else {
+            met.escribirArchivo(archivoGuardar,"El tipo de archivo PDF es: No encriptado");
+        }
     }
     
     // Determinar la version del pdf
-    public static void ObtenerVersionPDF(PDDocument pdf){
+    public static void ObtenerVersionPDF(PDDocument pdf, String archivoGuardar){
+        Métodos met = new Métodos();
         float version = pdf.getVersion();
         
-        System.out.println("Numero de version: " + version);
+        met.escribirArchivo(archivoGuardar, "Numero de version: " + version);
     }
         
     // Determinar la aplicacion con la que fue creada el pdf
-    public static void ObtenerAplicacionCreador(PDDocumentInformation info){
+    public static void ObtenerAplicacionCreador(PDDocumentInformation info, String archivoGuardar){
+        Métodos met = new Métodos();
         String aplicacionCreadora = info.getCreator();
         
         if (aplicacionCreadora != null && !aplicacionCreadora.isEmpty()) {
-            System.out.println("Aplicación creadora del archivo: " + aplicacionCreadora);
+            met.escribirArchivo(archivoGuardar, "Aplicación creadora del archivo: " + aplicacionCreadora);
         } else {
-            System.out.println("El archivo PDF no tiene la aplicación creadora.");
+            met.escribirArchivo(archivoGuardar,"El archivo PDF no tiene la aplicación creadora.");
         }
     }
     
     // Determinar las imagenes del pdf
-    public static void ObtenerImagenes(PDDocument pdf) throws IOException{
+    public static void ObtenerImagenes(PDDocument pdf, String archivoGuardar) throws IOException{
+        Métodos met = new Métodos();
         int pageNum = 0;
 
         for (PDPage page : pdf.getPages()) {
@@ -396,14 +412,14 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                 PDXObject xObject = resources.getXObject(xObjectName);
                 if (xObject instanceof PDImageXObject) {
                     PDImageXObject image = (PDImageXObject) xObject;
-                    System.out.println("Página " + pageNum + ": Imagen encontrada - Formato: " + image.getSuffix() + ", Ancho: " + image.getWidth() + ", Alto: " + image.getHeight());
+                    met.escribirArchivo(archivoGuardar, "Página " + pageNum + ": Imagen encontrada - Formato: " + image.getSuffix() + ", Ancho: " + image.getWidth() + ", Alto: " + image.getHeight());
                 } else if (xObject instanceof PDFormXObject) {
                     PDFormXObject form = (PDFormXObject) xObject;
                     for (COSName subXObjectName : form.getResources().getXObjectNames()) {
                         PDXObject subXObject = form.getResources().getXObject(subXObjectName);
                         if (subXObject instanceof PDImageXObject) {
                             PDImageXObject subImage = (PDImageXObject) subXObject;
-                            System.out.println("Página " + pageNum + ": Imagen encontrada - Formato: " + subImage.getSuffix() + ", Ancho: " + subImage.getWidth() + ", Alto: " + subImage.getHeight());
+                            met.escribirArchivo(archivoGuardar, "Página " + pageNum + ": Imagen encontrada - Formato: " + subImage.getSuffix() + ", Ancho: " + subImage.getWidth() + ", Alto: " + subImage.getHeight());
                         }
                     }
                 }
@@ -414,7 +430,8 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
     }
     
     // Determinar las fuentes del pdf
-    public static void ObtenerFuentes(PDDocument pdf){
+    public static void ObtenerFuentes(PDDocument pdf, String archivoGuardar){
+        Métodos met = new Métodos();
         Map<String, String> fontMapping = new HashMap<>();
         fontMapping.put("TT0", "Times New Roman");
         fontMapping.put("TT1", "Calibri");
@@ -437,7 +454,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
             }
         }
 
-        System.out.println("Fuentes únicas: " + String.join(", ", uniqueFonts));
+        met.escribirArchivo(archivoGuardar, "Fuentes únicas: " + String.join(", ", uniqueFonts));
     }
     /**
      * @param args the command line arguments
