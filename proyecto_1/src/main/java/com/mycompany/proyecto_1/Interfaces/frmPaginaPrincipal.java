@@ -138,6 +138,11 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Ayuda");
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Salir");
@@ -173,7 +178,6 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton2)
                                 .addGap(11, 11, 11)))
-                        .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -208,7 +212,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String archivo_guardar = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF\\InfoCarpetaPDFS.txt";
+        String archivo_guardar = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\Datos_PDF\\InfoCarpetaPDFS.txt";
         Métodos met = new Métodos();
         met.crearArchivo(archivo_guardar);
 
@@ -235,7 +239,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                         new Object[]{"Si", "No"}, "opcion 1");
                 System.out.println(seleccion);
                 if (seleccion == 0) {
-                    String folderPath = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF";
+                    String folderPath = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\Datos_PDF";
 
                     // Abre la carpeta en el sistema de archivos
                     try {
@@ -273,7 +277,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                 }
                 try {
                     // Especifica la ruta del archivo de texto que deseas abrir
-                    String rutaArchivo = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF\\InfoCarpetaPDFS.txt";
+                    String rutaArchivo = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\Datos_PDF\\InfoCarpetaPDFS.txt";
 
                     // Crea un objeto BufferedReader para leer el archivo
                     BufferedReader br = new BufferedReader(new FileReader(rutaArchivo));
@@ -354,7 +358,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 // Ruta de la carpeta que deseas abrir
-        String folderPath = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF";
+        String folderPath = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\Datos_PDF";
 
         // Abre la carpeta en el sistema de archivos
         try {
@@ -363,6 +367,24 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        String rutaPDF = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\ProyectoLectorMetadatos.pdf";
+
+    // Verifica si el soporte de la API Desktop está disponible
+    if (Desktop.isDesktopSupported()) {
+        Desktop desktop = Desktop.getDesktop();
+        try {
+            // Abre el archivo PDF con la aplicación predeterminada
+            desktop.open(new File(rutaPDF));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    } else {
+        // La API Desktop no está soportada en este sistema
+        System.out.println("La apertura de archivos no es compatible en este sistema.");
+    }
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     // Definiar el tamaño de los archivos pdfs
     public static void CalcularTamañoArchivos(File archivo, String archivoGuardar) {

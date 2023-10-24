@@ -21,9 +21,8 @@ public class frmEditor extends JFrame {
     frmEditor() {
 
         JFrame frame = new JFrame("Editor de texto");
-        frame.setSize(400, 300); // Tamaño de la ventana
+        frame.setSize(400, 300); 
 
-        // Centra la ventana en el centro de la pantalla
         frame.setLocationRelativeTo(null);
 
         frame.setVisible(true);
@@ -94,6 +93,7 @@ public class frmEditor extends JFrame {
 
     }
 
+    // Opcion para poder imprimir el archivo .txt
     public void imprimir() {
         String todo = area.getText();
         PrintJob pjob = getToolkit().getPrintJob(this, "Imprimir Hoja", null);
@@ -110,10 +110,11 @@ public class frmEditor extends JFrame {
             }
         }
         pg.drawString(todo.substring(inicio, todo.length()), 100, 100 + (15 * numlineas));
-        pg.dispose(); //Finalizar pagina
-        pjob.end(); //Termina trabajo y escupe pagina
+        pg.dispose(); 
+        pjob.end(); 
     }
 
+    // Opcion para poder abrir otro archivo de texto
     class AbrirArchivo implements ActionListener {
 
         public void actionPerformed(ActionEvent ae) {
@@ -149,6 +150,7 @@ public class frmEditor extends JFrame {
         }
     }
 
+    // Opcion para poder guardar el archivo de texto
     public class GuardarArchivo implements ActionListener {
 
         public void actionPerformed(ActionEvent ae) {
@@ -170,6 +172,7 @@ public class frmEditor extends JFrame {
         }
     }
 
+    // Opcion para poder buscar por medio de palabras
     public class AccionBuscar extends AbstractAction {
 
         private JTextComponent area;
@@ -178,7 +181,7 @@ public class frmEditor extends JFrame {
             this.area = area;
             this.putValue(Action.NAME, "Buscar ...");
             this.putValue(Action.ACCELERATOR_KEY, KeyStroke.getAWTKeyStroke('B', Event.CTRL_MASK));
-        }//Fin Constructor AccionBuscar
+        }
 
         public void actionPerformed(ActionEvent arg0) {
 
@@ -203,7 +206,7 @@ public class frmEditor extends JFrame {
             }
             area.setCaretPosition(posicion);
             area.moveCaretPosition(posicion + textoABuscar.length());
-        }//Fin ActionPerformed
+        }
     }
 
     private void menuEditar(ActionEvent evt) {
@@ -219,13 +222,11 @@ public class frmEditor extends JFrame {
             javax.swing.Action accionPegar = area.getActionMap().get(DefaultEditorKit.pasteAction);
             accionPegar.actionPerformed(evt);
         }
-
-//
     }
 
-    //========================================================= main
+    // Correr el editor de texto, cargando previamente el archio que queremos
     public void correr() {
-        String filePath = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF\\InfoPDF.txt"; // Reemplaza con la ruta de tu archivo
+        String filePath = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\Datos_PDF\\InfoPDF.txt"; 
         File file = new File(filePath);
         area.setText("");
 

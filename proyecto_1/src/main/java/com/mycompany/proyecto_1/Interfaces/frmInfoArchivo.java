@@ -303,7 +303,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // Ruta de la carpeta que deseas abrir
-        String folderPath = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF";
+        String folderPath = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\Datos_PDF";
 
         // Abre la carpeta en el sistema de archivos
         try {
@@ -319,7 +319,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void obtenerInformacionPDF(File archivoPDF) throws IOException {
-        String archivo = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF\\InfoPDF.txt";
+        String archivo = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\Datos_PDF\\InfoPDF.txt";
         Métodos met = new Métodos();
         met.crearArchivo(archivo);
 
