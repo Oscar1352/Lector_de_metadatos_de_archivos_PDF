@@ -27,6 +27,9 @@ import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import com.mycompany.proyecto_1.Métodos;
+import java.awt.Desktop;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 /**
  *
@@ -56,6 +59,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -112,6 +116,17 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
+        jButton3.setBackground(new java.awt.Color(255, 153, 153));
+        jButton3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton3.setText("Ir a carpeta del destino");
+        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Inicio");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,29 +160,28 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 61, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(80, 80, 80))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jButton2)
-                                        .addGap(11, 11, 11)))
-                                .addGap(15, 15, 15))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jSeparator1)
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(11, 11, 11)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(221, 221, 221))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,8 +198,9 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)))
-                .addGap(16, 16, 16))
+                        .addComponent(jLabel2))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -193,7 +208,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String archivo_guardar = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\InfoCarpetaPDFS.txt";
+        String archivo_guardar = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF\\InfoCarpetaPDFS.txt";
         Métodos met = new Métodos();
         met.crearArchivo(archivo_guardar);
 
@@ -214,7 +229,23 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
             File[] archivos = carpeta.listFiles();
 
             if (archivos != null) {
-                JOptionPane.showMessageDialog(null, "Se han guardado todos los datos obtenidos correctamante en el archivo de texto");
+                int seleccion = JOptionPane.showOptionDialog(null, "¿Desea abrir la carpeta en donde se guardó el archivo?",
+                        "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                        new Object[]{"Si", "No"}, "opcion 1");
+                System.out.println(seleccion);
+                if (seleccion == 0) {
+                    String folderPath = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF";
+
+                    // Abre la carpeta en el sistema de archivos
+                    try {
+                        Desktop.getDesktop().open(new File(folderPath));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                } else {
+                    System.out.println("");
+                }
                 for (File archivo : archivos) {
                     if (archivo.isFile() && archivo.getName().toLowerCase().endsWith(".pdf")) {
                         try {
@@ -239,6 +270,23 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                             System.err.println("Error al leer el archivo PDF: " + archivo.getName());
                         }
                     }
+                }
+                try {
+                    // Especifica la ruta del archivo de texto que deseas abrir
+                    String rutaArchivo = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF\\InfoCarpetaPDFS.txt";
+
+                    // Crea un objeto BufferedReader para leer el archivo
+                    BufferedReader br = new BufferedReader(new FileReader(rutaArchivo));
+
+                    String linea;
+                    while ((linea = br.readLine()) != null) {
+                        System.out.println(linea);
+                    }
+
+                    // Cierra el BufferedReader
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             } else {
                 System.err.println("La carpeta no existe o no es una carpeta válida.");
@@ -303,6 +351,18 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
         this.hide();
 
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+// Ruta de la carpeta que deseas abrir
+        String folderPath = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\Datos_PDF";
+
+        // Abre la carpeta en el sistema de archivos
+        try {
+            Desktop.getDesktop().open(new File(folderPath));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Definiar el tamaño de los archivos pdfs
     public static void CalcularTamañoArchivos(File archivo, String archivoGuardar) {
@@ -418,7 +478,6 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
     public static void ObtenerImagenes(PDDocument pdf, String archivoGuardar) throws IOException {
         Métodos met = new Métodos();
         int pageNum = 0;
-
         for (PDPage page : pdf.getPages()) {
             PDResources resources = page.getResources();
             for (COSName xObjectName : resources.getXObjectNames()) {
@@ -484,16 +543,24 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmPaginaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmPaginaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmPaginaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmPaginaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -508,6 +575,7 @@ public class frmPaginaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
