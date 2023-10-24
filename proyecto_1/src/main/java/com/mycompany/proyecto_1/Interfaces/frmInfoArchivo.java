@@ -21,8 +21,8 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import com.mycompany.proyecto_1.Métodos;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import org.apache.pdfbox.cos.COSName;
-
 
 /**
  *
@@ -67,6 +67,10 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         lblAplicación1 = new java.awt.Label();
         label8 = new java.awt.Label();
         lblVersion = new java.awt.Label();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Información de PDF");
@@ -109,6 +113,35 @@ public class frmInfoArchivo extends javax.swing.JFrame {
 
         label8.setText("Version de PDF: ");
 
+        jMenu1.setText("Inicio");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Ayuda");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Salir");
+        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,10 +151,6 @@ public class frmInfoArchivo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -154,6 +183,10 @@ public class frmInfoArchivo extends javax.swing.JFrame {
                                     .addComponent(lbltamaño, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(240, 240, 240)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +228,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
                     .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,6 +236,7 @@ public class frmInfoArchivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        JOptionPane.showMessageDialog(null, "Se regresa al inicio del programa");
         frmPaginaPrincipal a = new frmPaginaPrincipal();
         a.show(true);
         this.show(false);
@@ -216,8 +250,24 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         Regresar.setBackground(new Color(153, 51, 0));
     }//GEN-LAST:event_RegresarMouseExited
 
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        JOptionPane.showMessageDialog(null, "Se regresa al inicio del programa");
+        frmPaginaPrincipal a = new frmPaginaPrincipal();
+        a.show(true);
+        this.hide();
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        JOptionPane.showMessageDialog(null, "Gracias por utilizar nuestro programa");
+        System.exit(0);
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
     private void obtenerInformacionPDF(File archivoPDF) throws IOException {
-        String archivo = "C:\\Users\\urbin\\OneDrive\\Escritorio\\Lector_de_metadatos_de_archivos_PDF\\InfoPDF.txt";
+        String archivo = "C:\\Users\\Ale Luna\\OneDrive - Universidad Rafael Landivar\\Progra\\Ejercicios de Manejo de archivos\\Ejercicios-Manejo-de-Archivos\\Lector_de_metadatos_de_archivos_PDF-\\InfoPDF.txt";
         Métodos met = new Métodos();
         met.crearArchivo(archivo);
 
@@ -233,11 +283,11 @@ public class frmInfoArchivo extends javax.swing.JFrame {
 
         // Obtiene el número de páginas del documento
         int numPaginas = pdf.getNumberOfPages();
-        
+
         // Obtiene la version del pdf
         float version = pdf.getVersion();
         lblVersion.setText(version + "");
-        
+
         // Obtiene el tamaño del archivo del pdf
         long tamanoBytes = archivoPDF.length();
         float tamaño = tamanoBytes / 1000;
@@ -247,16 +297,16 @@ public class frmInfoArchivo extends javax.swing.JFrame {
         } else {
             lbltamaño.setText(tamaño + " Kilobytes");
         }
-        met.escribirArchivo(archivo, "Tamaño del archivo: "+ lbltamaño.getText());
+        met.escribirArchivo(archivo, "Tamaño del archivo: " + lbltamaño.getText());
         met.escribirArchivo(archivo, "Tamaño de las paginas: ");
-        
+
         // Obtiene el tamaño de las páginas del pdf
         for (int pageNum = 0; pageNum < numPaginas; pageNum++) {
             PDPage page = pdf.getPage(pageNum);
             float ancho = page.getMediaBox().getWidth();
             float alto = page.getMediaBox().getHeight();
-            
-            met.escribirArchivo(archivo, "Numero pagina: " + (pageNum+1));
+
+            met.escribirArchivo(archivo, "Numero pagina: " + (pageNum + 1));
             met.escribirArchivo(archivo, "Ancho:" + ancho);
             met.escribirArchivo(archivo, "Alto:" + alto);
         }
@@ -290,14 +340,14 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lblPalabrasClave.setText("El archivo PDF no tiene palabras clave.");
             met.escribirArchivo(archivo, "El archivo PDF no tiene palabras clave.");
         }
-        
+
         // Determinar tipo de archivo pdf
-            if (pdf.isEncrypted()) {
-                met.escribirArchivo(archivo, "El tipo de archivo PDF es: Encriptado");
-            } else {
-                met.escribirArchivo(archivo, "El tipo de archivo PDF es: No encriptado");
-            }
-        
+        if (pdf.isEncrypted()) {
+            met.escribirArchivo(archivo, "El tipo de archivo PDF es: Encriptado");
+        } else {
+            met.escribirArchivo(archivo, "El tipo de archivo PDF es: No encriptado");
+        }
+
         // Determinar la version del pdf
         met.escribirArchivo(archivo, "La versión del PDF es: " + version);
 
@@ -309,58 +359,58 @@ public class frmInfoArchivo extends javax.swing.JFrame {
             lblAplicación.setText("El archivo PDF no tiene la aplicación creadora.");
             met.escribirArchivo(archivo, "Aplicación creadora del archivo: " + "El archivo PDF no tiene la aplicación creadora.");
         }
-        
+
         // Determinar las imagenes del pdf
-            int pageNum = 0;
+        int pageNum = 0;
 
-            for (PDPage page : pdf.getPages()) {
-                PDResources resources = page.getResources();
-                for (COSName xObjectName : resources.getXObjectNames()) {
-                    PDXObject xObject = resources.getXObject(xObjectName);
-                    if (xObject instanceof PDImageXObject) {
-                        PDImageXObject image = (PDImageXObject) xObject;
-                        met.escribirArchivo(archivo, "Página " + pageNum + ": Imagen encontrada - Formato: " + image.getSuffix() + ", Ancho: " + image.getWidth() + ", Alto: " + image.getHeight());
-                    } else if (xObject instanceof PDFormXObject) {
-                        PDFormXObject form = (PDFormXObject) xObject;
-                        for (COSName subXObjectName : form.getResources().getXObjectNames()) {
-                            PDXObject subXObject = form.getResources().getXObject(subXObjectName);
-                            if (subXObject instanceof PDImageXObject) {
-                                PDImageXObject subImage = (PDImageXObject) subXObject;
-                                met.escribirArchivo(archivo, "Página " + pageNum + ": Imagen encontrada - Formato: " + subImage.getSuffix() + ", Ancho: " + subImage.getWidth() + ", Alto: " + subImage.getHeight());
-                            }
+        for (PDPage page : pdf.getPages()) {
+            PDResources resources = page.getResources();
+            for (COSName xObjectName : resources.getXObjectNames()) {
+                PDXObject xObject = resources.getXObject(xObjectName);
+                if (xObject instanceof PDImageXObject) {
+                    PDImageXObject image = (PDImageXObject) xObject;
+                    met.escribirArchivo(archivo, "Página " + pageNum + ": Imagen encontrada - Formato: " + image.getSuffix() + ", Ancho: " + image.getWidth() + ", Alto: " + image.getHeight());
+                } else if (xObject instanceof PDFormXObject) {
+                    PDFormXObject form = (PDFormXObject) xObject;
+                    for (COSName subXObjectName : form.getResources().getXObjectNames()) {
+                        PDXObject subXObject = form.getResources().getXObject(subXObjectName);
+                        if (subXObject instanceof PDImageXObject) {
+                            PDImageXObject subImage = (PDImageXObject) subXObject;
+                            met.escribirArchivo(archivo, "Página " + pageNum + ": Imagen encontrada - Formato: " + subImage.getSuffix() + ", Ancho: " + subImage.getWidth() + ", Alto: " + subImage.getHeight());
                         }
                     }
                 }
-
-                pageNum++;
             }
-        
+
+            pageNum++;
+        }
+
         // Determinar las fuentes del pdf
-            Map<String, String> fontMapping = new HashMap<>();
-            // Agrega mapeo de nombres técnicos a nombres legibles
-            fontMapping.put("TT0", "Times New Roman");
-            fontMapping.put("TT1", "Calibri");
-            fontMapping.put("TT2", "Arial");
-            fontMapping.put("TT3", "Courier-BoldOblique");
-            // Agrega más mapeos según sea necesario
+        Map<String, String> fontMapping = new HashMap<>();
+        // Agrega mapeo de nombres técnicos a nombres legibles
+        fontMapping.put("TT0", "Times New Roman");
+        fontMapping.put("TT1", "Calibri");
+        fontMapping.put("TT2", "Arial");
+        fontMapping.put("TT3", "Courier-BoldOblique");
+        // Agrega más mapeos según sea necesario
 
-            Set<String> uniqueFonts = new HashSet<>();
+        Set<String> uniqueFonts = new HashSet<>();
 
-            for (PDPage page : pdf.getPages()) {
-                PDResources resources = page.getResources();
-                COSDictionary fonts = (COSDictionary) resources.getCOSObject().getDictionaryObject(COSName.FONT);
-                if (fonts != null) {
-                    for (COSName fontName : fonts.keySet()) {
-                        String fontNameString = fontName.getName();
-                        String mappedFontName = fontMapping.get(fontNameString);
-                        if (mappedFontName != null) {
-                            uniqueFonts.add(mappedFontName);
-                        }
+        for (PDPage page : pdf.getPages()) {
+            PDResources resources = page.getResources();
+            COSDictionary fonts = (COSDictionary) resources.getCOSObject().getDictionaryObject(COSName.FONT);
+            if (fonts != null) {
+                for (COSName fontName : fonts.keySet()) {
+                    String fontNameString = fontName.getName();
+                    String mappedFontName = fontMapping.get(fontNameString);
+                    if (mappedFontName != null) {
+                        uniqueFonts.add(mappedFontName);
                     }
                 }
             }
+        }
 
-            met.escribirArchivo(archivo, "Fuentes únicas: " + String.join(", ", uniqueFonts));
+        met.escribirArchivo(archivo, "Fuentes únicas: " + String.join(", ", uniqueFonts));
 
         // Cierra el documento PDF
         pdf.close();
@@ -408,6 +458,10 @@ public class frmInfoArchivo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button Regresar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JSeparator jSeparator1;
     private java.awt.Label label1;
     private java.awt.Label label2;
